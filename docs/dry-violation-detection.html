@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DRY violation detection without false confidence</title>
+  <meta name="description" content="How to detect DRY violations without treating every repeated line as duplication. Learn the difference between duplicated code and duplicated knowledge.">
+  <link rel="canonical" href="https://cobaltchaser.github.io/pragmatic-audit/dry-violation-detection.html">
+  <meta name="theme-color" content="#080d18">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="DRY violation detection without false confidence">
+  <meta property="og:description" content="Repeated lines are a symptom. Duplicated knowledge is the problem. Here is how to review DRY findings without blindly extracting a helper.">
+  <meta property="og:url" content="https://cobaltchaser.github.io/pragmatic-audit/dry-violation-detection.html">
+  <meta property="og:image" content="https://cobaltchaser.github.io/pragmatic-audit/assets/social-preview.png">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="640">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="DRY violation detection without false confidence">
+  <meta name="twitter:description" content="Repeated lines are a symptom. Duplicated knowledge is the problem.">
+  <meta name="twitter:image" content="https://cobaltchaser.github.io/pragmatic-audit/assets/social-preview.png">
+  <link rel="stylesheet" href="./site.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "DRY violation detection without false confidence",
+    "description": "A practical explanation of DRY violation detection, duplicated knowledge, and how to review automated duplication findings.",
+    "datePublished": "2026-10-23",
+    "dateModified": "2026-10-23",
+    "mainEntityOfPage": "https://cobaltchaser.github.io/pragmatic-audit/dry-violation-detection.html",
+    "image": "https://cobaltchaser.github.io/pragmatic-audit/assets/social-preview.png",
+    "author": {
+      "@type": "Person",
+      "name": "Himanshu Sharma"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "pragmatic-audit"
+    }
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="./">pragmatic<strong>-audit</strong></a>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="./">Home</a>
+        <a href="./audit-ai-generated-code.html">AI code audit</a>
+        <a href="./pragmatic-programmer-checklist.html">Checklist</a>
+        <a href="https://github.com/CobaltChaser/pragmatic-audit">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <article class="article">
+      <p class="eyebrow">DRY</p>
+      <h1>DRY violation detection without false confidence</h1>
+      <p class="meta">Updated 23 October 2026 · 7 minute read</p>
+      <p class="lede">Repeated lines are a symptom. Duplicated knowledge is the problem. A useful DRY check finds candidates for human review without pretending that every repeated block should become a shared function.</p>
+
+      <h2>What DRY actually asks</h2>
+      <p>Don’t Repeat Yourself is often reduced to “extract repeated code.” That is too narrow. The principle is about knowledge: every piece of authoritative business logic should have one home. Two functions can share text while representing different rules. Two functions can look different while encoding the same rule twice.</p>
+      <p>A tax calculation copied into an invoice module is duplicated knowledge. Two validation functions that happen to use the same loop shape may be independent. The first is a maintenance risk. The second is a coincidence.</p>
+
+      <div class="callout">
+        <p><strong>Ask before extracting:</strong> if the rule changes, should both sites change together? If the answer is not an immediate yes, the duplication may be intentional.</p>
+      </div>
+
+      <h2>Why automated detection is hard</h2>
+      <p>A scanner can normalize whitespace, identifiers, and literals to find structurally similar blocks. It can also compare function bodies. Both are useful heuristics, and both produce false positives:</p>
+      <ul>
+        <li><strong>Different policies.</strong> Two pricing rules use the same arithmetic today but are owned by different teams and must evolve independently.</li>
+        <li><strong>Framework boilerplate.</strong> Test setup, serializers, and adapters often share a shape for reasons outside the domain.</li>
+        <li><strong>Generated code.</strong> A repeated block may be an output artifact, not hand-maintained knowledge.</li>
+        <li><strong>Coincidental similarity.</strong> Two loops with the same accumulator are not necessarily the same concept.</li>
+      </ul>
+      <p>Text similarity is evidence. It is not a conclusion.</p>
+
+      <h2>How pragmatic-audit detects duplication</h2>
+      <p>The <code>PP-DRY</code> rule uses two conservative signals:</p>
+      <ol>
+        <li><strong>Normalized blocks.</strong> It looks for windows of at least six non-trivial lines that repeat after normalizing whitespace, identifiers, and literals.</li>
+        <li><strong>Duplicate functions.</strong> It compares function bodies with the same normalization and reports a pair when the bodies are effectively identical.</li>
+      </ol>
+      <p>The output names both locations and the smallest useful fix. It does not rewrite the code, and it does not assume the correct extraction is obvious.</p>
+      <pre class="code-block"><code>$ pragmatic-audit .
+
+<span class="amber">PP-DRY</span>  src/orders.py:38
+Function `calculate_invoice` duplicates `calculate_total` at src/orders.py:30.
+Fix: Keep one authoritative representation and reuse it.</code></pre>
+
+      <h2>A review procedure for a DRY finding</h2>
+      <h3>1. Name the knowledge</h3>
+      <p>Write down the rule in one sentence. “Tax is 20% of the line-item total.” If you cannot name it, the duplication may be structural rather than semantic.</p>
+
+      <h3>2. Decide who owns the rule</h3>
+      <p>Find the module that should be authoritative. If two teams own the same rule independently, the real problem is organizational, not a missing helper.</p>
+
+      <h3>3. Check the change coupling</h3>
+      <p>Imagine the rule changes. Would both call sites need to change? If yes, extract. If only one should change, keep them separate and document the distinction.</p>
+
+      <h3>4. Prefer the smallest extraction</h3>
+      <p>A named function is often enough. A new abstraction layer, base class, or configuration system is usually too much. The goal is one authoritative home, not the most flexible possible design.</p>
+
+      <h3>5. Keep the test honest</h3>
+      <p>After extraction, the existing tests should still describe behavior. If the refactor changes a public API, add a test for the compatibility you intend to keep.</p>
+
+      <h2>When to suppress the finding</h2>
+      <p>A suppression is legitimate when the duplication is intentional and the reason is stable. Write the reason next to the code or in the file header:</p>
+      <pre class="code-block"><code># pragmatic-audit: ignore PP-DRY pricing and billing rules evolve independently
+def calculate_billing_total(items):
+    ...</code></pre>
+      <p>Do not suppress a finding merely to make the report quieter. A suppression without a reason is a broken window.</p>
+
+      <h2>What a clean DRY result does not mean</h2>
+      <p>No duplication finding means no repeated block large enough to cross the scanner’s threshold. It does not mean the code has one authoritative model of the domain. Knowledge can be duplicated across names, schemas, documentation, and teams without looking alike.</p>
+      <p>Use the scanner to find candidates. Use the domain to decide.</p>
+      <p><a class="button primary" href="https://github.com/CobaltChaser/pragmatic-audit">Try pragmatic-audit</a></p>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>pragmatic-audit is an independent, unofficial tool. Not affiliated with the authors of The Pragmatic Programmer.</span>
+      <span><a href="./">Home</a> · <a href="https://github.com/CobaltChaser/pragmatic-audit">GitHub</a></span>
+    </div>
+  </footer>
+</body>
+</html>

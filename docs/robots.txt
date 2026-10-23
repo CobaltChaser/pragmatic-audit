@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://cobaltchaser.github.io/pragmatic-audit/sitemap.xml

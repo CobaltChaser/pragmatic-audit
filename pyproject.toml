@@ -35,7 +35,8 @@ dependencies = []
 pragmatic-audit = "pragmatic_audit.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/CobaltChaser/pragmatic-audit"
+Homepage = "https://cobaltchaser.github.io/pragmatic-audit/"
+Documentation = "https://cobaltchaser.github.io/pragmatic-audit/"
 Repository = "https://github.com/CobaltChaser/pragmatic-audit"
 Issues = "https://github.com/CobaltChaser/pragmatic-audit/issues"
 Changelog = "https://github.com/CobaltChaser/pragmatic-audit/blob/main/CHANGELOG.md"

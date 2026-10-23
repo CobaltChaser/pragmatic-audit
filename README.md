@@ -6,6 +6,7 @@
 
 [![CI](https://github.com/CobaltChaser/pragmatic-audit/actions/workflows/ci.yml/badge.svg)](https://github.com/CobaltChaser/pragmatic-audit/actions/workflows/ci.yml)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![PyPI](https://img.shields.io/pypi/v/pragmatic-audit.svg)](https://pypi.org/project/pragmatic-audit/)
 [![Zero dependencies](https://img.shields.io/badge/runtime-zero%20dependencies-2ea44f)](#what-it-will-not-do)
 [![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue)](LICENSE)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](CONTRIBUTING.md)
@@ -13,9 +14,13 @@
 
 </div>
 
+<h1 align="center">pragmatic-audit</h1>
+
+<p align="center"><strong>Code-quality audits for AI-generated code.</strong> A zero-dependency CLI and agent skill that check a repository against <em>The Pragmatic Programmer</em>.</p>
+
 AI made writing code cheap. Changing it is still expensive.
 
-`pragmatic-audit` checks a repository against the durable principles from *The Pragmatic Programmer* — DRY, orthogonality, contracts, resource ownership, external configuration, tests, and more — then hands the judgment calls to your agent with a focused review packet.
+`pragmatic-audit` checks a repository against the durable principles from *The Pragmatic Programmer* — DRY, orthogonality, contracts, resource ownership, external configuration, tests, and more — then hands the judgment calls to your agent with a focused review packet. Read the [project site](https://cobaltchaser.github.io/pragmatic-audit/) for the [AI code audit workflow](https://cobaltchaser.github.io/pragmatic-audit/audit-ai-generated-code.html) and the [Pragmatic Programmer checklist](https://cobaltchaser.github.io/pragmatic-audit/pragmatic-programmer-checklist.html).
 
 It is for humans reviewing agent output, and for agents that need to write code worth keeping.
 
@@ -56,10 +61,17 @@ git clone --depth 1 https://github.com/CobaltChaser/pragmatic-audit.git /tmp/pra
 cd /tmp/pragmatic-audit && python3 -m pragmatic_audit /path/to/repo
 ```
 
-Or install the CLI once:
+Or install the CLI from PyPI:
 
 ```bash
-pipx install git+https://github.com/CobaltChaser/pragmatic-audit.git
+pip install pragmatic-audit
+pragmatic-audit .
+```
+
+With `pipx`:
+
+```bash
+pipx install pragmatic-audit
 pragmatic-audit .
 ```
 
@@ -158,7 +170,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: pipx install git+https://github.com/CobaltChaser/pragmatic-audit.git
+      - run: pipx install pragmatic-audit
       - run: pragmatic-audit . --ci --fail-on high --format markdown --output pragmatic-audit.md
       - uses: actions/upload-artifact@v4
         if: always()

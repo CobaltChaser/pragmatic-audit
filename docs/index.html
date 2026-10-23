@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pragmatic Audit — code quality audits for AI-generated code</title>
+  <meta name="description" content="Audit AI-generated and human-written code against The Pragmatic Programmer. A zero-dependency CLI and agent skill with 20 code-quality checks.">
+  <link rel="canonical" href="https://cobaltchaser.github.io/pragmatic-audit/">
+  <meta name="theme-color" content="#080d18">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Pragmatic Audit">
+  <meta property="og:title" content="Pragmatic Audit — code quality audits for AI-generated code">
+  <meta property="og:description" content="Find DRY violations, weak contracts, missing tests, and other changeability risks before they compound.">
+  <meta property="og:url" content="https://cobaltchaser.github.io/pragmatic-audit/">
+  <meta property="og:image" content="https://cobaltchaser.github.io/pragmatic-audit/assets/social-preview.png">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="640">
+  <meta property="og:image:alt" content="Pragmatic Audit terminal output showing code-quality findings">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Pragmatic Audit — code quality audits for AI-generated code">
+  <meta name="twitter:description" content="A zero-dependency CLI and agent skill for auditing code against The Pragmatic Programmer.">
+  <meta name="twitter:image" content="https://cobaltchaser.github.io/pragmatic-audit/assets/social-preview.png">
+  <link rel="stylesheet" href="./site.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "pragmatic-audit",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "macOS, Linux, Windows",
+    "description": "A zero-dependency Python CLI and agent skill that audits code against The Pragmatic Programmer.",
+    "url": "https://cobaltchaser.github.io/pragmatic-audit/",
+    "codeRepository": "https://github.com/CobaltChaser/pragmatic-audit",
+    "license": "https://www.apache.org/licenses/LICENSE-2.0",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Himanshu Sharma"
+    }
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="./">pragmatic<strong>-audit</strong></a>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="#checks">Checks</a>
+        <a href="#install">Install</a>
+        <a href="./pragmatic-programmer-checklist.html">Checklist</a>
+        <a href="./audit-ai-generated-code.html">AI code audit</a>
+        <a href="https://github.com/CobaltChaser/pragmatic-audit">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <p class="eyebrow">A Pragmatic Programmer tool</p>
+        <h1>Code quality audits for <span class="accent">AI-generated code</span>.</h1>
+        <p class="lede">AI made writing code cheap. Changing it is still expensive. pragmatic-audit finds the mechanical risks that make a codebase hard to change, then gives your agent a focused review packet for the judgment calls.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="https://github.com/CobaltChaser/pragmatic-audit">Get started on GitHub</a>
+          <a class="button" href="#install">Install the CLI</a>
+        </div>
+
+        <div class="terminal" aria-label="Example pragmatic-audit output">
+          <div class="terminal-bar">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span>pragmatic-audit examples/bad-repo</span>
+          </div>
+          <pre><span class="prompt">$</span> pragmatic-audit examples/bad-repo
+
+Signal  <span class="amber">74/100</span>  <span class="dim">heuristic, not a grade</span>
+  high 2   medium 6   low 4
+
+Top fixes
+  1. <span class="amber">HIGH</span>   <span class="teal">PP-CONTRACTS</span>  src/orders.py:18
+     <span class="dim">except Exception</span> swallows the error.
+     Fix: Handle the error, add context and re-raise, or fail fast.
+  2. <span class="amber">HIGH</span>   <span class="teal">PP-CONFIG</span>  src/orders.py:27
+     Environment-specific URL is hardcoded.
+     Fix: Move environment-specific values into configuration or a secret store.
+
+Manual review queue
+  Tracer bullets, contracts, orthogonality, test design, reversibility
+
+<span class="dim">Findings are hypotheses. Read the code before changing it.</span></pre>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="why">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">Why it matters</p>
+          <h2>The bottleneck moved from writing code to changing it.</h2>
+          <p>Agents produce code faster than humans can review it. They also copy patterns at scale, including the bad ones. A prototype that was meant to be disposable becomes production, and the small compromises compound.</p>
+        </div>
+        <div class="grid">
+          <article class="card">
+            <span class="tag">DETERMINISTIC</span>
+            <h3>Find the mechanical problems</h3>
+            <p>Duplicated knowledge, swallowed errors, hardcoded configuration, missing resources, weak tests, and other patterns a scanner can judge without guessing.</p>
+          </article>
+          <article class="card">
+            <span class="tag">HONEST</span>
+            <h3>Separate facts from judgment</h3>
+            <p>Every finding names the principle and fix. A manual review queue covers tracer bullets, contracts, orthogonality, reversibility, and test design.</p>
+          </article>
+          <article class="card">
+            <span class="tag">AGENT-READY</span>
+            <h3>Give the agent evidence</h3>
+            <p>The review packet contains the findings, the questions static analysis cannot answer, and a prompt that requires the agent to read the code before changing it.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="checks">
+      <div class="wrap">
+        <div class="split">
+          <div class="copy">
+            <p class="eyebrow">20 core checks</p>
+            <h2>Principles, not style rules.</h2>
+            <p>The audit is built around changeability. It asks whether knowledge has one authoritative home, whether boundaries fail loudly, whether resources are owned, and whether behavior is pinned down by tests.</p>
+            <p>Three opt-in history checks cover commit size, vendor reversibility, and shared mutable state near concurrency.</p>
+            <p><a href="https://github.com/CobaltChaser/pragmatic-audit/blob/main/docs/rules.md">Read the full rule catalog</a></p>
+          </div>
+          <div class="table-scroll">
+          <table class="rule-table">
+            <thead>
+              <tr><th>Rule</th><th>What it catches</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>PP-DRY</td><td>Duplicated normalized blocks and duplicate functions</td></tr>
+              <tr><td>PP-CONFIG</td><td>Hardcoded secrets, environment URLs, and absolute paths</td></tr>
+              <tr><td>PP-CONTRACTS</td><td>Empty catches, swallowed errors, and bare except</td></tr>
+              <tr><td>PP-RESOURCES</td><td>Resources without a guaranteed release path</td></tr>
+              <tr><td>PP-COMPLEXITY</td><td>Long functions, deep nesting, and too many parameters</td></tr>
+              <tr><td>PP-TESTS</td><td>Missing tests, thin coverage, and assertion-free tests</td></tr>
+              <tr><td>PP-VCS</td><td>Missing git, missing ignores, and tracked secrets</td></tr>
+              <tr><td>PP-DOCS</td><td>Missing or unhelpful README documentation</td></tr>
+            </tbody>
+          </table>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="install">
+      <div class="wrap">
+        <div class="split">
+          <div class="copy">
+            <p class="eyebrow">Install</p>
+            <h2>One command. No runtime dependencies.</h2>
+            <p>Python 3.11 or newer. The CLI makes no network requests, sends no telemetry, and never executes repository code.</p>
+            <pre class="code-block"><code><span class="comment"># install the CLI</span>
+pip install pragmatic-audit
+
+<span class="comment"># audit a repository</span>
+pragmatic-audit .
+
+<span class="comment"># fail CI on high-severity findings</span>
+pragmatic-audit . --ci --fail-on high
+
+<span class="comment"># write an agent review packet</span>
+pragmatic-audit . --agent-packet</code></pre>
+          </div>
+          <div class="copy">
+            <p class="eyebrow">For coding agents</p>
+            <h2>Teach the agent the standard, not just the finding.</h2>
+            <p>The bundled Agent Skill explains the principles, the review checklist, and the suppression rules. It works with Claude Code, Claude Cowork, ChatGPT Work/CoWork, Codex, OpenCode, and compatible hosts.</p>
+            <ul class="checks">
+              <li>Read every file behind a finding before commenting.</li>
+              <li>Confirm or dismiss each hypothesis with a reason.</li>
+              <li>Report the few changes that most improve changeability.</li>
+              <li>Never echo a secret or invent a benchmark.</li>
+            </ul>
+            <p><a href="https://github.com/CobaltChaser/pragmatic-audit/blob/main/docs/agent-skill.md">Install the skill</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="callout">
+          <p><strong>Start with the report, not a rewrite.</strong> Every finding is a hypothesis with a file, line, principle, and smallest fix. The tool is Apache-2.0 licensed and free for commercial use.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>pragmatic-audit is an independent, unofficial tool. Not affiliated with the authors of The Pragmatic Programmer.</span>
+      <span><a href="https://github.com/CobaltChaser/pragmatic-audit">GitHub</a> · <a href="https://github.com/CobaltChaser/pragmatic-audit/blob/main/LICENSE">Apache-2.0</a></span>
+    </div>
+  </footer>
+</body>
+</html>

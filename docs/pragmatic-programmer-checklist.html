@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pragmatic Programmer checklist for code review</title>
+  <meta name="description" content="A practical 20-point Pragmatic Programmer checklist for code review: DRY, orthogonality, contracts, resources, configuration, tests, automation, and documentation.">
+  <link rel="canonical" href="https://cobaltchaser.github.io/pragmatic-audit/pragmatic-programmer-checklist.html">
+  <meta name="theme-color" content="#080d18">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Pragmatic Programmer checklist for code review">
+  <meta property="og:description" content="Twenty changeability checks you can use in a pull request, with the false positive to watch for.">
+  <meta property="og:url" content="https://cobaltchaser.github.io/pragmatic-audit/pragmatic-programmer-checklist.html">
+  <meta property="og:image" content="https://cobaltchaser.github.io/pragmatic-audit/assets/social-preview.png">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="640">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Pragmatic Programmer checklist for code review">
+  <meta name="twitter:description" content="Twenty changeability checks you can use in a pull request.">
+  <meta name="twitter:image" content="https://cobaltchaser.github.io/pragmatic-audit/assets/social-preview.png">
+  <link rel="stylesheet" href="./site.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Pragmatic Programmer checklist for code review",
+    "description": "A practical 20-point checklist for reviewing changeability, with false positives and automation notes.",
+    "datePublished": "2026-10-23",
+    "dateModified": "2026-10-23",
+    "mainEntityOfPage": "https://cobaltchaser.github.io/pragmatic-audit/pragmatic-programmer-checklist.html",
+    "image": "https://cobaltchaser.github.io/pragmatic-audit/assets/social-preview.png",
+    "author": {
+      "@type": "Person",
+      "name": "Himanshu Sharma"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "pragmatic-audit"
+    }
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="./">pragmatic<strong>-audit</strong></a>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="./">Home</a>
+        <a href="./audit-ai-generated-code.html">AI code audit</a>
+        <a href="./dry-violation-detection.html">DRY detection</a>
+        <a href="https://github.com/CobaltChaser/pragmatic-audit">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <article class="article">
+      <p class="eyebrow">Code review checklist</p>
+      <h1>A practical Pragmatic Programmer checklist</h1>
+      <p class="meta">Updated 23 October 2026 · 7 minute read</p>
+      <p class="lede">Twenty questions that focus a review on the cost of the next change. This is an independent, practical checklist inspired by the principles in <em>The Pragmatic Programmer</em>; it is not the book’s checklist and reproduces no book text.</p>
+
+      <div class="callout">
+        <p><strong>Use it in order.</strong> Start with the boundaries and the tests. Style disagreements can wait until the behavior and the design are understood.</p>
+      </div>
+
+      <h2>The 20 checks</h2>
+      <div class="table-scroll">
+          <table class="rule-table">
+        <thead>
+          <tr><th>Check</th><th>Question to ask</th><th>Common false positive</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>PP-DRY</td><td>Does each piece of knowledge have one authoritative home?</td><td>Similar code that represents different policies</td></tr>
+          <tr><td>PP-CONFIG</td><td>Are secrets, hosts, paths, and policy outside the code?</td><td>A local constant that clarifies a comparison</td></tr>
+          <tr><td>PP-MAGIC</td><td>Is every numeric threshold named and explained?</td><td>A protocol value fixed by an external contract</td></tr>
+          <tr><td>PP-ORTHO</td><td>Can one concern change without forcing edits in another?</td><td>Two modules that genuinely share a domain concept</td></tr>
+          <tr><td>PP-GLOBALS</td><td>Is mutable state owned by the smallest possible scope?</td><td>A process-wide client with a documented lifecycle</td></tr>
+          <tr><td>PP-TRAINWRECK</td><td>Avoid call chains that reach through three or more objects.</td><td>A fluent API or builder that returns its own type</td></tr>
+          <tr><td>PP-INHERIT</td><td>Would composition express this relationship better?</td><td>Framework base classes and exception hierarchies</td></tr>
+          <tr><td>PP-CONTRACTS</td><td>Does every public boundary validate inputs and fail loudly?</td><td>A boundary that intentionally returns a typed result</td></tr>
+          <tr><td>PP-RESOURCES</td><td>Is every file, lock, transaction, and connection closed on every path?</td><td>A resource transferred to a documented owner</td></tr>
+          <tr><td>PP-COINCIDENCE</td><td>Does the code rely on reliable behavior rather than an accident?</td><td>Float comparison with an explicit tolerance</td></tr>
+          <tr><td>PP-COMPLEXITY</td><td>Is each function small enough to hold in your head?</td><td>A parser or dispatcher with inherent branching</td></tr>
+          <tr><td>PP-NAMING</td><td>Do names use the domain vocabulary and state intent?</td><td>Short names with strong local convention, such as <code>i</code> in a loop</td></tr>
+          <tr><td>PP-COMMENTS</td><td>Do comments explain why, and is dead code deleted?</td><td>A comment that documents an external constraint</td></tr>
+          <tr><td>PP-BROKEN-WINDOWS</td><td>Is every skip, suppression, and TODO bounded and visible?</td><td>A skip that links to a tracked issue with an owner</td></tr>
+          <tr><td>PP-TESTS</td><td>Do tests pin down the behavior you intend to keep?</td><td>Generated tests that assert an observable contract</td></tr>
+          <tr><td>PP-TEST-HYGIENE</td><td>Are tests deterministic and independent of the network and clock?</td><td>An integration test with a local, controlled fixture</td></tr>
+          <tr><td>PP-AUTOMATION</td><td>Are tests, linting, and release steps scripted and repeatable?</td><td>A documented manual step that cannot be automated yet</td></tr>
+          <tr><td>PP-VCS</td><td>Is everything in version control, with secrets and large files ignored?</td><td>A generated lockfile or vendored dependency</td></tr>
+          <tr><td>PP-E2E</td><td>Is there one thin path that exercises the real architecture?</td><td>A library with no service boundary to exercise</td></tr>
+          <tr><td>PP-DOCS</td><td>Does the README explain purpose, setup, usage, and tests?</td><td>A repository whose docs live in a separate site</td></tr>
+        </tbody>
+      </table>
+        </div>
+
+      <h2>How to run the checklist in a pull request</h2>
+      <ol>
+        <li><strong>Read the change description.</strong> Write down what behavior should be different when the change lands.</li>
+        <li><strong>Find the boundary.</strong> Identify the smallest public surface that crosses into the change.</li>
+        <li><strong>Check the failure path.</strong> Follow an invalid input and an infrastructure error. Do they fail loudly with context?</li>
+        <li><strong>Check ownership.</strong> Follow every acquired resource to a guaranteed release.</li>
+        <li><strong>Check the tests.</strong> Remove one behavior and confirm a test fails for the right reason.</li>
+        <li><strong>Check duplication.</strong> Ask which representation is authoritative before suggesting an extraction.</li>
+        <li><strong>Record dissent.</strong> If a finding is a false positive, write the reason next to the suppression.</li>
+      </ol>
+
+      <h2>Automate the repeatable part</h2>
+      <p>A checklist works better when the mechanical questions are answered before the review starts. The pragmatic-audit CLI checks 20 of these concerns, reports file and line locations, and produces a review packet for a coding agent.</p>
+      <pre class="code-block"><code>pip install pragmatic-audit
+pragmatic-audit .
+pragmatic-audit . --agent-packet</code></pre>
+      <p>The scan is a hypothesis generator, not a grade. Less than a perfect signal is not proof of poor design, and a clean signal is not proof of correctness.</p>
+
+      <h2>Where the checklist stops</h2>
+      <p>No static tool can decide whether a boundary is in the right place, whether a domain concept is named well, or whether an abstraction has earned its keep. Those remain human decisions. The checklist is there to make them explicit, not to automate them away.</p>
+      <p><a class="button primary" href="https://github.com/CobaltChaser/pragmatic-audit">Run the audit</a></p>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>pragmatic-audit is an independent, unofficial tool. Not affiliated with the authors of The Pragmatic Programmer.</span>
+      <span><a href="./">Home</a> · <a href="https://github.com/CobaltChaser/pragmatic-audit">GitHub</a></span>
+    </div>
+  </footer>
+</body>
+</html>

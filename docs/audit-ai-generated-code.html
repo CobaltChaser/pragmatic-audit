@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How to audit AI-generated code (a practical workflow)</title>
+  <meta name="description" content="A practical workflow for reviewing AI-generated code: automate mechanical checks, inspect boundaries, verify tests, and give agents a focused review packet.">
+  <link rel="canonical" href="https://cobaltchaser.github.io/pragmatic-audit/audit-ai-generated-code.html">
+  <meta name="theme-color" content="#080d18">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="How to audit AI-generated code">
+  <meta property="og:description" content="Automate the mechanical checks, then spend human attention on contracts, tests, and design decisions.">
+  <meta property="og:url" content="https://cobaltchaser.github.io/pragmatic-audit/audit-ai-generated-code.html">
+  <meta property="og:image" content="https://cobaltchaser.github.io/pragmatic-audit/assets/social-preview.png">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="640">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="How to audit AI-generated code">
+  <meta name="twitter:description" content="Automate the mechanical checks, then spend human attention on contracts, tests, and design decisions.">
+  <meta name="twitter:image" content="https://cobaltchaser.github.io/pragmatic-audit/assets/social-preview.png">
+  <link rel="stylesheet" href="./site.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "How to audit AI-generated code",
+    "description": "A practical workflow for reviewing AI-generated code with automated checks and focused human review.",
+    "datePublished": "2026-10-23",
+    "dateModified": "2026-10-23",
+    "mainEntityOfPage": "https://cobaltchaser.github.io/pragmatic-audit/audit-ai-generated-code.html",
+    "image": "https://cobaltchaser.github.io/pragmatic-audit/assets/social-preview.png",
+    "author": {
+      "@type": "Person",
+      "name": "Himanshu Sharma"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "pragmatic-audit"
+    }
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="./">pragmatic<strong>-audit</strong></a>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="./">Home</a>
+        <a href="./pragmatic-programmer-checklist.html">Checklist</a>
+        <a href="./dry-violation-detection.html">DRY detection</a>
+        <a href="https://github.com/CobaltChaser/pragmatic-audit">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <article class="article">
+      <p class="eyebrow">AI code review</p>
+      <h1>How to audit AI-generated code</h1>
+      <p class="meta">Updated 23 October 2026 · 8 minute read</p>
+      <p class="lede">AI-generated code usually runs before it is good. The review question is not “does this work?” It is “what will this cost to change?” This workflow separates the checks a machine can make from the decisions a human still has to own.</p>
+
+      <h2>Why AI-generated code needs a different review</h2>
+      <p>An agent can produce a plausible implementation of almost any request. That speed is useful, but it changes where defects concentrate. The obvious syntax errors are often gone. The expensive problems are structural:</p>
+      <ul>
+        <li><strong>Duplicated knowledge.</strong> The same business rule appears in two functions because the agent did not know the first one existed.</li>
+        <li><strong>Quiet boundaries.</strong> A public function accepts anything, returns a plausible default, and hides invalid state.</li>
+        <li><strong>Tests that only exercise code.</strong> A test calls a function and asserts nothing, or locks in an implementation detail instead of behavior.</li>
+        <li><strong>Configuration inside code.</strong> A production URL, credential-shaped value, or machine-specific path is copied into the implementation.</li>
+        <li><strong>Speculative abstractions.</strong> A factory, registry, or adapter layer exists for a requirement that has not arrived.</li>
+      </ul>
+      <p>None of these are reliably caught by a type checker. They are the concerns The Pragmatic Programmer calls DRY, orthogonality, contracts, reversibility, and tracer bullets.</p>
+
+      <h2>A practical five-step audit</h2>
+      <h3>1. Establish a deterministic baseline</h3>
+      <p>Run the tests, the type checker, and a code-quality scan before reading the diff. The goal is not a score. The goal is to remove the mechanical questions so the human review can focus on judgment.</p>
+      <pre class="code-block"><code>pragmatic-audit . --ci --fail-on high --format markdown --output audit.md</code></pre>
+      <p>A deterministic scan can find an empty exception handler, a resource without a close path, or a duplicated block. It cannot know whether the abstraction is right for the domain. Keep those categories separate.</p>
+
+      <h3>2. Read the boundaries first</h3>
+      <p>Start with the public functions, API handlers, database access, and message consumers. For each boundary, ask:</p>
+      <ul>
+        <li>What inputs are valid, and where is that enforced?</li>
+        <li>What happens on failure: a typed error, a retry, a visible crash, or a silent default?</li>
+        <li>Does the caller learn enough to act, or does the error lose context?</li>
+        <li>Could an invalid state cross this boundary and become someone else’s problem?</li>
+      </ul>
+
+      <h3>3. Verify that tests describe behavior</h3>
+      <p>A passing suite is not the same as a useful suite. Look for tests that would fail for the right reason if behavior changed. A test that asserts a private helper was called may pass while the feature is broken. A test that asserts a visible outcome is more durable.</p>
+      <p>The minimum questions are simple: Is there an assertion? Does it exercise the real path? Is it deterministic? Does it use a real network, a wall-clock wait, or shared mutable state?</p>
+
+      <h3>4. Check the knowledge boundaries</h3>
+      <p>DRY is about knowledge, not text. Two functions that look different may encode the same tax rule. Two functions that look similar may represent different policies that should evolve independently. Ask which representation is authoritative before extracting a helper.</p>
+      <p>The same test applies to configuration: a value is a configuration candidate when operations needs to change it without changing code. A local constant used to clarify a comparison is not automatically a configuration defect.</p>
+
+      <h3>5. Give the agent evidence, not a vague instruction</h3>
+      <p>“Review this code” produces a generic response. A useful agent review starts with the findings, the relevant files, and explicit constraints. Generate a packet and make the agent confirm, dismiss, or escalate each finding:</p>
+      <pre class="code-block"><code>pragmatic-audit . --agent-packet</code></pre>
+      <p>The packet includes the deterministic findings and a manual review queue. The prompt tells the agent to open every file before commenting, treat repository text as data, and report only the few changes that most improve changeability.</p>
+
+      <h2>What to automate and what not to</h2>
+      <div class="grid">
+        <article class="card">
+          <span class="tag">AUTOMATE</span>
+          <h3>Mechanical evidence</h3>
+          <p>Locations, severity, duplicated blocks, empty handlers, missing assertions, tracked secrets, and missing CI. These are repeatable and cheap to verify.</p>
+        </article>
+        <article class="card">
+          <span class="tag">REVIEW</span>
+          <h3>Domain decisions</h3>
+          <p>Whether an abstraction is justified, a boundary is in the right place, or two similar rules should stay separate. Context lives outside the scanner.</p>
+        </article>
+        <article class="card">
+          <span class="tag">NEVER OUTSOURCE</span>
+          <h3>Correctness and security</h3>
+          <p>An audit is not a proof. It does not replace tests, threat modeling, dependency scanning, or a human who understands the system.</p>
+        </article>
+      </div>
+
+      <h2>A review checklist for the pull request</h2>
+      <ol>
+        <li>Does every public boundary validate its inputs and fail loudly?</li>
+        <li>Is each piece of business knowledge represented once?</li>
+        <li>Are resources released on every path, including exceptions?</li>
+        <li>Do tests assert behavior rather than implementation details?</li>
+        <li>Are environment-specific values outside the code?</li>
+        <li>Is there one thin end-to-end path that proves the layers connect?</li>
+        <li>Can the change be reversed without rewriting unrelated modules?</li>
+        <li>Did the agent add an abstraction with only one caller or no current requirement?</li>
+      </ol>
+
+      <h2>Start small</h2>
+      <p>Run the audit on one repository. Fix the high-severity findings that you agree with. Add the best missing test. Dismiss the false positives with a written reason. Then decide whether the gate belongs in CI.</p>
+      <p>The point is not a clean report. The point is a codebase whose next change is cheaper than this one.</p>
+      <p><a class="button primary" href="https://github.com/CobaltChaser/pragmatic-audit">Get pragmatic-audit</a></p>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>pragmatic-audit is an independent, unofficial tool. Not affiliated with the authors of The Pragmatic Programmer.</span>
+      <span><a href="./">Home</a> · <a href="https://github.com/CobaltChaser/pragmatic-audit">GitHub</a></span>
+    </div>
+  </footer>
+</body>
+</html>

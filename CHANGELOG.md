@@ -21,6 +21,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Example bad and good repositories, a real example report, and reproducible SVG previews.
 - GitHub Actions CI with a Python 3.11, 3.12, and 3.13 matrix.
 - Apache-2.0 license and `NOTICE`.
+- Public documentation site with Open Graph metadata, structured data, sitemap, and targeted guides for auditing AI-generated code, DRY violations, and Pragmatic Programmer reviews.
+- PyPI Trusted Publishing workflow.
 
 [Unreleased]: https://github.com/CobaltChaser/pragmatic-audit/compare/v0.1.0...HEAD
 [0.1.0]: https://github.com/CobaltChaser/pragmatic-audit/releases/tag/v0.1.0
