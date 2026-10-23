@@ -1,0 +1,12 @@
+[scan]
+exclude = ["examples", "tests/fixtures", ".github"]
+
+[thresholds]
+long_function = 70
+deep_nesting = 5
+max_params = 6
+test_ratio = 0.25
+
+[ci]
+fail_on = "high"
+min_confidence = "medium"

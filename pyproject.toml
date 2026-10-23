@@ -1,0 +1,56 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pragmatic-audit"
+version = "0.1.0"
+description = "Audit a repository against The Pragmatic Programmer, and give agents a practical standard to code by."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { file = "LICENSE" }
+authors = [{ name = "Himanshu Sharma" }]
+keywords = [
+  "code-quality",
+  "static-analysis",
+  "pragmatic-programmer",
+  "ai-agents",
+  "developer-tools",
+  "code-review",
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: Apache Software License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Software Development :: Quality Assurance",
+]
+dependencies = []
+
+[project.scripts]
+pragmatic-audit = "pragmatic_audit.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/CobaltChaser/pragmatic-audit"
+Repository = "https://github.com/CobaltChaser/pragmatic-audit"
+Issues = "https://github.com/CobaltChaser/pragmatic-audit/issues"
+Changelog = "https://github.com/CobaltChaser/pragmatic-audit/blob/main/CHANGELOG.md"
+
+[tool.hatch.build.targets.wheel]
+packages = ["pragmatic_audit"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+  "/pragmatic_audit",
+  "/skills",
+  "/docs",
+  "/examples",
+  "/tests",
+  "/README.md",
+  "/LICENSE",
+  "/NOTICE",
+]

@@ -1,0 +1,37 @@
+<svg width="1200" height="760" viewBox="0 0 1200 760" fill="none" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>pragmatic-audit terminal output</title>
+<rect width="1200" height="760" fill="#0B1020"/>
+<rect x="34" y="34" width="1132" height="692" rx="16" fill="#0E1728" stroke="#26334D"/>
+<rect x="34" y="34" width="1132" height="52" rx="16" fill="#131D32"/>
+<rect x="34" y="70" width="1132" height="16" fill="#131D32"/>
+<circle cx="64" cy="60" r="6" fill="#F87171"/>
+<circle cx="86" cy="60" r="6" fill="#F2B84B"/>
+<circle cx="108" cy="60" r="6" fill="#34D399"/>
+<text x="1136" y="65" text-anchor="end" fill="#7C8AA5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12">pragmatic-audit</text>
+<text x="68" y="132" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" xml:space="preserve"><tspan fill="#7C8AA5">$ </tspan><tspan fill="#D7E0EE">pragmatic-audit examples/bad-repo</tspan></text>
+<text x="68" y="157" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" xml:space="preserve"><tspan fill="#D7E0EE"></tspan></text>
+<text x="68" y="182" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" xml:space="preserve"><tspan fill="#D7E0EE" font-weight="700">pragmatic-audit 0.1.0</tspan></text>
+<text x="68" y="207" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" xml:space="preserve"><tspan fill="#7C8AA5">Scanned 2 files, 38 LOC (29 prod, 9 test) in 0.02s</tspan></text>
+<text x="68" y="232" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" xml:space="preserve"><tspan fill="#7C8AA5">Root: examples/bad-repo</tspan></text>
+<text x="68" y="257" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" xml:space="preserve"><tspan fill="#D7E0EE"></tspan></text>
+<text x="68" y="282" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" xml:space="preserve"><tspan fill="#D7E0EE" font-weight="700">Signal 74/100  </tspan><tspan fill="#7C8AA5">heuristic, not a grade</tspan></text>
+<text x="68" y="307" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" xml:space="preserve"><tspan fill="#F87171">high </tspan><tspan fill="#D7E0EE" font-weight="700">2</tspan><tspan fill="#F2B84B">   medium </tspan><tspan fill="#D7E0EE" font-weight="700">6</tspan><tspan fill="#7DD3C7">   low </tspan><tspan fill="#D7E0EE" font-weight="700">4</tspan></text>
+<text x="68" y="332" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" xml:space="preserve"><tspan fill="#D7E0EE"></tspan></text>
+<text x="68" y="357" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" xml:space="preserve"><tspan fill="#D7E0EE" font-weight="700">Top fixes</tspan></text>
+<text x="68" y="382" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" xml:space="preserve"><tspan fill="#7C8AA5">  1. </tspan><tspan fill="#F87171" font-weight="700">HIGH  </tspan><tspan fill="#7DD3C7">PP-CONTRACTS  </tspan><tspan fill="#7C8AA5">src/orders.py:18</tspan></text>
+<text x="68" y="407" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" xml:space="preserve"><tspan fill="#D7E0EE">     `except Exception` swallows the error.</tspan></text>
+<text x="68" y="432" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" xml:space="preserve"><tspan fill="#7C8AA5">  2. </tspan><tspan fill="#F87171" font-weight="700">HIGH  </tspan><tspan fill="#7DD3C7">PP-CONFIG  </tspan><tspan fill="#7C8AA5">src/orders.py:27</tspan></text>
+<text x="68" y="457" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" xml:space="preserve"><tspan fill="#D7E0EE">     Environment-specific URL is hardcoded.</tspan></text>
+<text x="68" y="482" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" xml:space="preserve"><tspan fill="#7C8AA5">  3. </tspan><tspan fill="#F2B84B" font-weight="700">MEDIUM</tspan><tspan fill="#7DD3C7">PP-TESTS  </tspan><tspan fill="#7C8AA5">tests/test_orders.py:14</tspan></text>
+<text x="68" y="507" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" xml:space="preserve"><tspan fill="#D7E0EE">     Test `test_total_runs` has no assertion.</tspan></text>
+<text x="68" y="532" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" xml:space="preserve"><tspan fill="#7C8AA5">  4. </tspan><tspan fill="#F2B84B" font-weight="700">MEDIUM</tspan><tspan fill="#7DD3C7">PP-BROKEN-WINDOWS  </tspan><tspan fill="#7C8AA5">tests/test_orders.py:8</tspan></text>
+<text x="68" y="557" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" xml:space="preserve"><tspan fill="#D7E0EE">     Test is skipped or ignored.</tspan></text>
+<text x="68" y="582" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" xml:space="preserve"><tspan fill="#D7E0EE"></tspan></text>
+<text x="68" y="607" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" xml:space="preserve"><tspan fill="#D7E0EE" font-weight="700">Manual review queue</tspan></text>
+<text x="68" y="632" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" xml:space="preserve"><tspan fill="#7DD3C7">  Tracer bullets</tspan><tspan fill="#7C8AA5">  tips 20, 68</tspan></text>
+<text x="68" y="657" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" xml:space="preserve"><tspan fill="#7DD3C7">  Design with contracts</tspan><tspan fill="#7C8AA5">  tips 37, 38, 39</tspan></text>
+<text x="68" y="682" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" xml:space="preserve"><tspan fill="#7DD3C7">  Orthogonality</tspan><tspan fill="#7C8AA5">  tips 17, 44</tspan></text>
+<text x="68" y="707" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" xml:space="preserve"><tspan fill="#7DD3C7">  Domain language</tspan><tspan fill="#7C8AA5">  tips 22, 80</tspan></text>
+<text x="68" y="732" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" xml:space="preserve"><tspan fill="#D7E0EE"></tspan></text>
+<text x="68" y="757" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" xml:space="preserve"><tspan fill="#7C8AA5">Findings are hypotheses. Read the code before changing it.</tspan></text>
+</svg>

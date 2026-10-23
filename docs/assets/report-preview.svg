@@ -1,0 +1,62 @@
+<svg width="1200" height="760" viewBox="0 0 1200 760" fill="none" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>Pragmatic audit report preview</title>
+<rect width="1200" height="760" fill="#F7F4EB"/>
+<rect x="0" y="0" width="1200" height="14" fill="#F2B84B"/>
+<rect x="110" y="58" width="980" height="646" rx="18" fill="#FFFDF8" stroke="#DBD5C7"/>
+<text x="156" y="120" fill="#6B7280" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" letter-spacing="2.8">PRAGMATIC AUDIT REPORT</text>
+<text x="156" y="168" fill="#152033" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="40" font-weight="700">pragmatic-audit</text>
+<text x="156" y="200" fill="#6B7280" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14">examples/bad-repo</text>
+<text x="958" y="168" text-anchor="end" fill="#F2B84B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="44" font-weight="700">74</text>
+<text x="958" y="190" text-anchor="end" fill="#6B7280" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11">SIGNAL / 100</text>
+<rect x="156" y="226" width="142" height="76" rx="10" fill="#F4F0E5"/>
+<text x="170" y="252" fill="#6B7280" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" letter-spacing="1.6">FILES</text>
+<text x="170" y="284" fill="#152033" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="25" font-weight="700">2</text>
+<rect x="310" y="226" width="142" height="76" rx="10" fill="#F4F0E5"/>
+<text x="324" y="252" fill="#6B7280" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" letter-spacing="1.6">PROD LOC</text>
+<text x="324" y="284" fill="#152033" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="25" font-weight="700">29</text>
+<rect x="464" y="226" width="142" height="76" rx="10" fill="#F4F0E5"/>
+<text x="478" y="252" fill="#6B7280" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" letter-spacing="1.6">TEST LOC</text>
+<text x="478" y="284" fill="#152033" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="25" font-weight="700">9</text>
+<rect x="618" y="226" width="142" height="76" rx="10" fill="#F4F0E5"/>
+<text x="632" y="252" fill="#6B7280" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" letter-spacing="1.6">HIGH</text>
+<text x="632" y="284" fill="#152033" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="25" font-weight="700">2</text>
+<rect x="772" y="226" width="142" height="76" rx="10" fill="#F4F0E5"/>
+<text x="786" y="252" fill="#6B7280" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" letter-spacing="1.6">MEDIUM</text>
+<text x="786" y="284" fill="#152033" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="25" font-weight="700">6</text>
+<rect x="926" y="226" width="142" height="76" rx="10" fill="#F4F0E5"/>
+<text x="940" y="252" fill="#6B7280" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" letter-spacing="1.6">LOW</text>
+<text x="940" y="284" fill="#152033" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="25" font-weight="700">4</text>
+<line x1="156" y1="330" x2="1044" y2="330" stroke="#E2DCCF"/>
+<text x="156" y="366" fill="#152033" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="20" font-weight="700">Top fixes</text>
+<text x="156" y="398" fill="#6B7280" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13">1.</text>
+<text x="184" y="398" fill="#F87171" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" font-weight="700">HIGH</text>
+<text x="252" y="398" fill="#0F766E" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12">PP-CONTRACTS</text>
+<text x="344" y="398" fill="#6B7280" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12">src/orders.py:18</text>
+<text x="156" y="418" fill="#152033" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14">`except Exception` swallows the error.</text>
+<text x="156" y="436" fill="#6B7280" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12">Fix: Handle the error, add context and re-raise, or fail fast.</text>
+<text x="156" y="460" fill="#6B7280" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13">2.</text>
+<text x="184" y="460" fill="#F87171" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" font-weight="700">HIGH</text>
+<text x="252" y="460" fill="#0F766E" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12">PP-CONFIG</text>
+<text x="344" y="460" fill="#6B7280" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12">src/orders.py:27</text>
+<text x="156" y="480" fill="#152033" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14">Environment-specific URL is hardcoded.</text>
+<text x="156" y="498" fill="#6B7280" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12">Fix: Move environment-specific values into configuration or a secret store.</text>
+<text x="156" y="522" fill="#6B7280" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13">3.</text>
+<text x="184" y="522" fill="#C98A16" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" font-weight="700">MEDIUM</text>
+<text x="252" y="522" fill="#0F766E" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12">PP-TESTS</text>
+<text x="344" y="522" fill="#6B7280" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12">tests/test_orders.py:14</text>
+<text x="156" y="542" fill="#152033" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14">Test `test_total_runs` has no assertion.</text>
+<text x="156" y="560" fill="#6B7280" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12">Fix: Test the behavior you expect to keep; add a failing test before a fix.</text>
+<text x="156" y="584" fill="#6B7280" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13">4.</text>
+<text x="184" y="584" fill="#C98A16" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" font-weight="700">MEDIUM</text>
+<text x="252" y="584" fill="#0F766E" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12">PP-BROKEN-WINDOWS</text>
+<text x="344" y="584" fill="#6B7280" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12">tests/test_orders.py:8</text>
+<text x="156" y="604" fill="#152033" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14">Test is skipped or ignored.</text>
+<text x="156" y="622" fill="#6B7280" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12">Fix: Fix it now, or record a bounded, visible plan to fix it.</text>
+<text x="156" y="646" fill="#6B7280" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13">5.</text>
+<text x="184" y="646" fill="#C98A16" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" font-weight="700">MEDIUM</text>
+<text x="252" y="646" fill="#0F766E" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12">PP-COINCIDENCE</text>
+<text x="344" y="646" fill="#6B7280" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12">src/orders.py:13</text>
+<text x="156" y="666" fill="#152033" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14">Mutable default argument in `total`.</text>
+<text x="156" y="684" fill="#6B7280" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12">Fix: Make the behavior explicit and rely on documented semantics.</text>
+<text x="156" y="668" fill="#6B7280" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11">Findings are hypotheses. Read the code before changing it.</text>
+</svg>

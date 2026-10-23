@@ -1,0 +1,49 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Run tests
+        run: python3 -m unittest discover -s tests -v
+      - name: Compile package
+        run: python3 -m compileall -q pragmatic_audit
+      - name: Audit this repository
+        run: python3 -m pragmatic_audit . --ci --fail-on high
+      - name: Install the package
+        run: python3 -m pip install .
+      - name: Check the console script
+        run: pragmatic-audit --version
+
+  examples:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Audit the clean example
+        run: python3 -m pragmatic_audit examples/good-repo --ci --fail-on high
+      - name: Prove the bad example fails a strict gate
+        run: |
+          set +e
+          python3 -m pragmatic_audit examples/bad-repo --ci --fail-on high --format json > example-report.json
+          code=$?
+          set -e
+          test "$code" -eq 1

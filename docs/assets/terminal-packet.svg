@@ -1,0 +1,35 @@
+<svg width="1200" height="760" viewBox="0 0 1200 760" fill="none" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>pragmatic-audit agent packet</title>
+<rect width="1200" height="760" fill="#0B1020"/>
+<rect x="34" y="34" width="1132" height="692" rx="16" fill="#0E1728" stroke="#26334D"/>
+<rect x="34" y="34" width="1132" height="52" rx="16" fill="#131D32"/>
+<rect x="34" y="70" width="1132" height="16" fill="#131D32"/>
+<circle cx="64" cy="60" r="6" fill="#F87171"/>
+<circle cx="86" cy="60" r="6" fill="#F2B84B"/>
+<circle cx="108" cy="60" r="6" fill="#34D399"/>
+<text x="1136" y="65" text-anchor="end" fill="#7C8AA5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12">pragmatic-audit</text>
+<text x="68" y="132" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" xml:space="preserve"><tspan fill="#7C8AA5">$ </tspan><tspan fill="#D7E0EE">pragmatic-audit examples/bad-repo --agent-packet</tspan></text>
+<text x="68" y="157" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" xml:space="preserve"><tspan fill="#7C8AA5">Wrote pragmatic-audit.packet.json</tspan></text>
+<text x="68" y="182" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" xml:space="preserve"><tspan fill="#7C8AA5">Wrote pragmatic-audit.packet.md</tspan></text>
+<text x="68" y="207" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" xml:space="preserve"><tspan fill="#D7E0EE"></tspan></text>
+<text x="68" y="232" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" xml:space="preserve"><tspan fill="#F2B84B" font-weight="700">Pragmatic review packet</tspan></text>
+<text x="68" y="257" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" xml:space="preserve"><tspan fill="#D7E0EE"></tspan></text>
+<text x="68" y="282" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" xml:space="preserve"><tspan fill="#D7E0EE">Repository: `examples/bad-repo`</tspan></text>
+<text x="68" y="307" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" xml:space="preserve"><tspan fill="#D7E0EE">Generated: 2026-10-23T11:50:41Z</tspan></text>
+<text x="68" y="332" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" xml:space="preserve"><tspan fill="#D7E0EE">Signal: 74/100 (heuristic)</tspan></text>
+<text x="68" y="357" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" xml:space="preserve"><tspan fill="#D7E0EE"></tspan></text>
+<text x="68" y="382" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" xml:space="preserve"><tspan fill="#7DD3C7" font-weight="700">What the scanner found</tspan></text>
+<text x="68" y="407" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" xml:space="preserve"><tspan fill="#D7E0EE"></tspan></text>
+<text x="68" y="432" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" xml:space="preserve"><tspan fill="#D7E0EE">- HIGH `PP-CONTRACTS` `src/orders.py:18` — `except Exception` swallows the error.</tspan></text>
+<text x="68" y="457" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" xml:space="preserve"><tspan fill="#7C8AA5">Fix: Handle the error, add context and re-raise, or fail fast.</tspan></text>
+<text x="68" y="482" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" xml:space="preserve"><tspan fill="#D7E0EE">- HIGH `PP-CONFIG` `src/orders.py:27` — Environment-specific URL is hardcoded.</tspan></text>
+<text x="68" y="507" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" xml:space="preserve"><tspan fill="#7C8AA5">Fix: Move environment-specific values into configuration or a secret store.</tspan></text>
+<text x="68" y="532" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" xml:space="preserve"><tspan fill="#D7E0EE">- MEDIUM `PP-TESTS` `tests/test_orders.py:14` — Test `test_total_runs` has no assertion.</tspan></text>
+<text x="68" y="557" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" xml:space="preserve"><tspan fill="#7C8AA5">Fix: Test the behavior you expect to keep; add a failing test before a fix.</tspan></text>
+<text x="68" y="582" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" xml:space="preserve"><tspan fill="#D7E0EE">- MEDIUM `PP-BROKEN-WINDOWS` `tests/test_orders.py:8` — Test is skipped or ignored.</tspan></text>
+<text x="68" y="607" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" xml:space="preserve"><tspan fill="#7C8AA5">Fix: Fix it now, or record a bounded, visible plan to fix it.</tspan></text>
+<text x="68" y="632" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" xml:space="preserve"><tspan fill="#D7E0EE">- MEDIUM `PP-COINCIDENCE` `src/orders.py:13` — Mutable default argument in `total`.</tspan></text>
+<text x="68" y="657" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" xml:space="preserve"><tspan fill="#7C8AA5">Fix: Make the behavior explicit and rely on documented semantics.</tspan></text>
+<text x="68" y="682" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" xml:space="preserve"><tspan fill="#D7E0EE">- MEDIUM `PP-DRY` `src/orders.py:38` — Function `calculate_invoice` duplicates `calcula…</tspan></text>
+<text x="68" y="707" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" xml:space="preserve"><tspan fill="#7C8AA5">Fix: Keep one authoritative representation and reuse it.</tspan></text>
+</svg>

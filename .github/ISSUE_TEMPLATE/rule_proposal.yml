@@ -1,0 +1,73 @@
+name: Rule proposal
+description: Propose a new check or a new language pattern.
+title: "[rule] "
+labels: ["rule proposal"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        A rule should catch a principle violation that matters across projects. It should be conservative, deterministic, and cheap to run.
+  - type: input
+    id: principle
+    attributes:
+      label: Principle and tip
+      description: Which Pragmatic Programmer principle and tip number does this encode?
+      placeholder: "Tip 46: Don't Chain Method Calls"
+    validations:
+      required: true
+  - type: textarea
+    id: detects
+    attributes:
+      label: What should it detect?
+      description: Describe the pattern in language a reviewer can check by hand.
+    validations:
+      required: true
+  - type: textarea
+    id: false-positives
+    attributes:
+      label: Likely false positives
+      description: Name at least two cases where the pattern is correct code.
+    validations:
+      required: true
+  - type: textarea
+    id: example
+    attributes:
+      label: Before and after
+      description: Show the problematic code and the smallest safe fix.
+      render: python
+    validations:
+      required: true
+  - type: textarea
+    id: fixtures
+    attributes:
+      label: Fixtures
+      description: Describe one positive and one negative fixture. A PR should include them as tests.
+    validations:
+      required: true
+  - type: dropdown
+    id: languages
+    attributes:
+      label: Languages
+      multiple: true
+      options:
+        - Python
+        - JavaScript
+        - TypeScript
+        - Go
+        - Java
+        - Kotlin
+        - Rust
+        - Ruby
+        - PHP
+        - Other
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: This can be checked without executing repository code.
+          required: true
+        - label: This can be checked without a network call.
+          required: true
+        - label: This does not require a new runtime dependency.
+          required: true

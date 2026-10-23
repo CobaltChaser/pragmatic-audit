@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security report
+    url: https://github.com/CobaltChaser/pragmatic-audit/security/policy
+    about: Do not open a public issue for a vulnerability. Follow the security policy.
+  - name: Documentation
+    url: https://github.com/CobaltChaser/pragmatic-audit/tree/main/docs
+    about: Read the rule catalog, architecture, skill guide, and FAQ.

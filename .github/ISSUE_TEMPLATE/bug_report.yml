@@ -1,0 +1,61 @@
+name: Bug report
+description: Report a crash, a bad output, or a false positive.
+title: "[bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping make the audit more honest. A minimal reproduction is the most useful thing you can provide.
+
+        For security issues, do not use this form. Follow SECURITY.md.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Describe the behavior you saw and what you expected.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: Include the command, the relevant file, and the smallest fixture that triggers the problem.
+      render: shell
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: Output of `pragmatic-audit --version`.
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Kind of problem
+      options:
+        - False positive
+        - False negative
+        - Crash or traceback
+        - Incorrect report or exit code
+        - Documentation
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Python version, operating system, and host.
+      placeholder: Python 3.12.4, macOS 15, Claude Code
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: I searched existing issues first.
+          required: true
+        - label: This is not a security report.
+          required: true
